@@ -1,8 +1,15 @@
 ---
 layout: post
 title: Hello World - Vno
-date: 2016-02-16 15:32:24.000000000 +09:00
+date: 2017-01-16 15:32:24.000000000 +09:00
 ---
+#### 写在前面
+
+该博客用[Jekyll](http://jekyllrb.com)，和onevcat的[vno](https://github.com/onevcat/vno-jekyll)主题搭建而成。
+
+希望能持续更新吧。。就这样，还有就是我要让懵逼的背景图动起来。动次大次。
+
+再次感谢onvcat同学提供的主题，让伸手速成党有了福利。( •̀ ω •́ )y 但是markdown一点也不好玩，需要一点时间熟悉，2017新的一年，加油吧。
 
 #### What's this
 
@@ -36,6 +43,7 @@ You could replace the background and avatar image in `assets/images` folder to c
 | Site Name    | URL                          |
 | ------------ | -----------------------------|
 | OneV's Den   | http://onevcat.com           |
+| 当我们一起走过   | http://melodyso.github.io           |
 
 > If you happen to be using this theme, welcome to [send me a pull request](https://github.com/onevcat/vno-jekyll/pulls) to add your site link here. :)
 
