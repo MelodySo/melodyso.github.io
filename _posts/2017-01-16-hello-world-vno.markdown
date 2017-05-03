@@ -17,7 +17,10 @@ date: 2017-01-16 15:32:24.000000000 +09:00
 
 #### Usage
 
+Install [ruby](https://www.ruby-lang.org/en/documentation/installation/#rubyinstaller)
+
 ```bash
+$ gem install jekyll bundler
 $ git clone https://github.com/onevcat/vno-jekyll.git your_site
 $ cd your_site
 $ bundler install
