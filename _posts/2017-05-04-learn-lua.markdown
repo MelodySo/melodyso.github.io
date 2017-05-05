@@ -274,8 +274,7 @@ Lua在线教程 [http://lua-users.org/wiki/TutorialDirectory](http://lua-users.o
 >
 >     a,b,c,d,e,f = myFirstLuaFunctionWithMultipleReturnValues(1,2,"three")
 >     print(a,b,c,d,e,f)
-
-
+> 
 > -------- Output ------
 > 
 > 1       2       three   My first lua function with multiple return values       1       true
@@ -284,7 +283,7 @@ Lua在线教程 [http://lua-users.org/wiki/TutorialDirectory](http://lua-users.o
 - 变量范围和function，以及local关键字，所有的变量默认都是全局变量
 
 >     b="global"
-
+>
 >     -- To make local variables you must put the keyword 'local' in front.
 >     function myfunc()
 >         local b=" local variable"

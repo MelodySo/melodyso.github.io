@@ -17,7 +17,14 @@ date: 2017-01-16 15:32:24.000000000 +09:00
 
 #### Usage
 
-Install [ruby](https://www.ruby-lang.org/en/documentation/installation/#rubyinstaller)
+First of all, you should install [ruby](https://www.ruby-lang.org/en/documentation/installation/#rubyinstaller)
+
+> 如果你在使用windows部署博客，并且遇到了编码格式的问题，可能需要这样的操作：
+> 
+> 在 C:\Ruby23-x64\lib\ruby\gems\2.3.0\gems\sass-3.4.22\lib\sass\engine.rb
+的最后一个 require 后面加一行代码：
+>
+> Encoding.default_external = Encoding.find('utf-8')
 
 ```bash
 $ gem install jekyll bundler
