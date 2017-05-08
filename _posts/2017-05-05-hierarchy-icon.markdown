@@ -5,7 +5,7 @@ date: 2017-05-05 15:50:24.000000000 +08:00
 ---
 
 能上代码就不BB了。
-
+参考自：[http://answers.unity3d.com/questions/431952/how-to-show-an-icon-in-hierarchy-view.html](http://answers.unity3d.com/questions/431952/how-to-show-an-icon-in-hierarchy-view.html)
 
 {% highlight c %}
 using UnityEditor;
@@ -42,10 +42,11 @@ class HierarchyIconDisplay
     static void HierarchyItemCB(int instanceID, Rect selectionRect)
     {
         Rect r = new Rect(selectionRect);
-        r.x = r.x+r.width - 16;
+        r.x = r.x + r.width - 16;
         r.width = 16;
         if (markedObjects.Contains(instanceID))
         {
+            //可以替换成GUI.Button等。。。
             GUI.Label(r, texture);
         }
     }
