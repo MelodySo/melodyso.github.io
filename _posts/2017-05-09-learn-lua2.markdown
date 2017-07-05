@@ -1,0 +1,175 @@
+---
+layout: post
+title: lua学习笔记（二）
+date: 2017-05-03 15:40:24.000000000 +08:00
+---
+
+
+### 上一个学习笔记都是记录了一些基本案例，这个学习笔记要记录一些自己遇到的问题
+
+
+- lua不支持函数重载！
+- wtf
+- 引用关系，这里的test方法，不需要return a
+>     
+>     function test(f)
+>     	f.b=3
+>     	f.c=4
+>     end
+>
+>     a={}
+>     a.b=1
+>     a.c=2
+>     
+>     print(a.b,a.c)
+>     
+>     test(a)
+>     
+>     print(a.b,a.c)
+> 
+> -------- Output ------
+> 
+> 1	2
+>
+> 3	4
+
+- lua的操作符：
+
+[http://lua-users.org/wiki/ExpressionsTutorial](http://lua-users.org/wiki/ExpressionsTutorial)
+
+lua里面，false和nil为false，其他则为true
+
+- lua的assert:
+
+> a = false--nil
+> 
+> assert(a, "a is nil or false")
+> 
+> print("Hello World")
+> 
+> -------- Output ------
+> 
+
+这里没有打印出Hello World，assert会打断后续的程序执行
+
+- lua的table类型的copy
+(http://lua-users.org/wiki/CopyTable)[http://lua-users.org/wiki/CopyTable]
+
+
+- lua的return:
+这样是正确的：
+> function fuck()
+> 
+> 	i=0
+> 
+> 	if i==0 then
+> 
+> 		return i
+> 
+> 	else
+> 
+> 		return i+1
+> 
+> 	end
+> 
+> end
+> 
+> 
+> 
+> print(fuck())
+> 
+> 
+而这样的连写return会引起编译错误（c#会有warning但并无error）
+> function fuck()
+> 
+> 	return i
+> 
+> 	return i+1
+> 
+> end
+> 
+> print(fuck())
+
+- lua的table.remove和#长度：
+> t={1,2,3,4}
+> 
+> 
+> print("length="..#t)
+> 
+> for i,v in pairs(t) do
+> 
+> 	print(i,v)
+> 
+> end
+> 
+> 
+> 
+> table.remove(t,2)
+> 
+> print("length="..#t)
+> 
+> for i,v in pairs(t) do
+> 
+> 	print(i,v)
+> 
+> end
+> 
+> -------- Output ------
+> 
+> length=4
+> 
+> 1	1
+> 
+> 
+> 2	2
+> 
+> 3	3
+> 
+> 4	4
+> 
+> length=3
+> 
+> 1	1
+> 
+> 2	3
+> 
+> 3	4
+
+这里的lua table会在remove后自动调整长度
+
+> 
+> a={}
+> 
+> a["k1"]=1
+> 
+> a["k2"]=2
+> 
+> 
+> 
+> print("length="..#a)
+> 
+> for i,v in pairs(a) do
+> 
+> 	print(i,v)
+> 
+> end
+> -------- Output ------
+> 
+> 
+> 
+> length=0
+> 
+> k1	1
+> 
+> k2	2
+
+用非数字作为table的key，则不会影响其长度。
+
+
+
+
+
+
+
+
+

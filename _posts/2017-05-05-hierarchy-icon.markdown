@@ -42,6 +42,7 @@ class HierarchyIconDisplay
     static void HierarchyItemCB(int instanceID, Rect selectionRect)
     {
         Rect r = new Rect(selectionRect);
+        //我用的Unity 5.6.0f3版本，我这里需要再加一个r.x才能保持一致，和Unity论坛里面的答案不一样，可能是新旧版本导致的不同吧。
         r.x = r.x + r.width - 16;
         r.width = 16;
         if (markedObjects.Contains(instanceID))

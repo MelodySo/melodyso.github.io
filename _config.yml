@@ -22,7 +22,7 @@ blog_button:
 
 # Navigation buttons in the front page.
 nav:
-    - {title: QQ联系, description: My Projects, url: 'http://wpa.qq.com/msgrd?v=3&amp;uin=529419853&amp;site=qq&amp;menu=yes'}
+    - {title: QQ联系, description: QQ联系, url: 'http://wpa.qq.com/msgrd?v=3&amp;uin=529419853&amp;site=qq&amp;menu=yes'}
     # - {title: Another Button, description: A button, url: 'http://example.com'}
 
 # Pagination
@@ -37,7 +37,7 @@ comment:
     
 # Social
 social:
-    weibo: 1728202697
+    weibo: melodysoda
     github: MelodySo
     twitter: 529419853
     gplus: 113419569222607388462
