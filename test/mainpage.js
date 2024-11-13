@@ -7,7 +7,8 @@ fetchDataValue("enabled", (value) => {
         selfRefresh();
     }
 });
-const signinHour = 17;
+// 10点签到，这里设置为9点
+const signinHour = 9;
 const now = new Date();
 const currentHour = now.getHours();
 if (currentHour < signinHour) {
