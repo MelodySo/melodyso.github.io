@@ -1,27 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
+    <style>
+        .largeLabel {
+            font-size: 50px;
+            padding: 5px 5px;
+        }
+        .largeSwitch {
+            width: 30px;
+            height: 30px;
+        }
+        #signInButton {
+            font-size: 200px;
+            padding: 10px 20px;
+        }
+    </style>
 </head>
-<body>
-    <h1>Main Page</h1>
 
-    <!-- SignIn 按钮 -->
-    <button id="signInButton">Sign In</button>
+<body>
+    <!-- <h1>Hello World!</h1> -->
 
     <!-- 开关按钮（默认隐藏） -->
     <br>
-    <label id="toggleLabel" style="display: none;">
-        <input type="checkbox" id="toggleSwitch">
+    <label id="toggleLabel" class="largeLabel" style="display: none;">
+        <input type="checkbox" id="toggleSwitch" class="largeSwitch">
         Enabled
     </label>
-    <!-- 插入换行 -->
-    <br>
-    <text id="toggleText">点击按钮进行设置</text>
 
-    <!-- 引入外部脚本 -->
+    <br>
+    <!-- 准备开关按钮（默认隐藏） -->
+    <label id="readyToggleLabel" class="largeLabel" style="display: none;">
+        <input type="checkbox" id="readyToggleSwitch" class="largeSwitch">
+        Ready
+    </label>
+
+    <br>
+    <text id="toggleText" class="largeLabel">点击按钮进行设置</text>
+    <br>
+    <text id="lastRequestTimeText" class="largeLabel">上次获取二维码时间</text>
+
+    <br>
+    <!-- SignIn 按钮 -->
+    <button id="signInButton">Sign In</button>
+    <script src="common.js"></script>
     <script src="test.js"></script>
 </body>
+
 </html>

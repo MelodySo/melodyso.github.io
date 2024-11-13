@@ -1,10 +1,5 @@
-const secret = '26d880e4-9ea7-4476-b75e-1d999f4a1ad3';
-//const qrcodeKey = 'qrcode';
-
-const qrcodeUrl = `https://store.zapier.com/api/records?secret=${secret}`;//&key=${qrcodeKey}
-
 // 获取 qrcode 并打开新标签页
-fetch(qrcodeUrl)
+fetch(dataUrl)
     .then(response => {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -13,12 +8,11 @@ fetch(qrcodeUrl)
     })
     .then(data => {
         const qrtime = data.time;
-        console.log('qrcodeUrl', qrcodeUrl);
-        console.log('QR code data:', data);
+        console.log('data:', data);
         tipText.textContent = formatDate(qrtime) + ",获取成功:";
         const qrcodeValue = data.qrcode;
         if (qrcodeValue) {
-            newUrl = `https://api.caoliao.net/api/qrcode/code?text=${qrcodeValue}`;
+            newUrl = `https://api.cl2wm.cn/api/qrcode/code?text=${qrcodeValue}`;
             window.open(newUrl, '_blank');
         } else {
             console.error('No qrcode value found in the response.');
