@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook JavaScript SDK</title>
+</head>
+<body>
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId            : '3458730801106374',
+                xfbml            : true,
+                version          : 'v25.0'
+            });
+        };
+    </script>
+    <script async defer crossorigin="anonymous" 
+        src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+    <!-- Facebook 根元素 -->
+    <div id="fb-root"></div>
+
+    <!-- 页面内容 -->
+    <div style="padding: 20px; font-family: Arial, sans-serif; max-width: 600px;">
+        <h1>Facebook JavaScript SDK 示例</h1>
+        
+        <div style="background-color: #fff3cd; border: 1px solid #ffc107; padding: 15px; margin: 20px 0; border-radius: 4px;">
+            <strong>⚠️ 注意：</strong> Facebook 登录功能需要 <strong>HTTPS</strong> 环境。
+            <br>本地测试请使用 HTTPS，或将项目部署到支持 HTTPS 的服务器。
+        </div>
+
+        <hr style="margin: 30px 0;">
+
+        <!-- Facebook 赞按钮 (不需要登录) -->
+        <h2>Facebook 赞按钮示例</h2>
+        <p>这个按钮无需登录即可使用：</p>
+        <div class="fb-like" data-href="https://www.facebook.com/" data-width="" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+
+        <hr style="margin: 30px 0;">
+
+        <!-- Facebook 登录部分 -->
+        <h2>Facebook 登录功能</h2>
+        
+        <!-- 登录按钮 -->
+        <div id="loginContainer" style="margin: 20px 0;">
+            <button id="fbLoginBtn" onclick="fbLogin()" style="padding: 10px 20px; background-color: #1877F2; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">
+                🔵 使用 Facebook 登录
+            </button>
+        </div>
+
+        <!-- 用户信息展示 -->
+        <div id="userInfo" style="display: none; background-color: #e7f3ff; border: 1px solid #2196F3; padding: 15px; border-radius: 4px; margin: 20px 0;">
+            <h3>用户信息</h3>
+            <p><strong>用户名：</strong> <span id="userName">-</span></p>
+            <p><strong>邮箱：</strong> <span id="userEmail">-</span></p>
+            <p><strong>头像：</strong></p>
+            <img id="userPicture" src="" alt="用户头像" style="width: 100px; height: 100px; border-radius: 50%; margin: 10px 0;">
+            <div style="margin-top: 15px;">
+                <button id="logoutBtn" onclick="fbLogout()" style="padding: 8px 16px; background-color: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;">
+                    🚪 登出
+                </button>
+            </div>
+        </div>
+
+        <!-- SDK 状态 -->
+        <div id="status" style="color: #666; margin-top: 20px;">
+            <p>检查 SDK 状态中...</p>
+        </div>
+
+        <script>
+            // SDK 初始化完成回调
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId            : '3458730801106374',
+                    xfbml            : true,
+                    version          : 'v25.0'
+                });
+
+                // SDK 加载成功
+                console.log('Facebook SDK 加载成功！');
+                document.getElementById('status').innerHTML = '<p style="color: green;">✓ Facebook SDK 加载成功！您可以在 HTTPS 环境下使用登录功能。</p>';
+
+                // 检查当前登录状态
+                checkLoginStatus();
+            };
+
+            // 检查登录状态
+            function checkLoginStatus() {
+                FB.getLoginStatus(function(response) {
+                    if (response.status === 'connected') {
+                        console.log('用户已登录');
+                        getUserInfo();
+                    } else {
+                        console.log('用户未登录或已登出');
+                        showLoginButton();
+                    }
+                });
+            }
+
+            // Facebook 登录函数
+            function fbLogin() {
+                FB.login(function(response) {
+                    if (response.authResponse) {
+                        console.log('登录成功！', response);
+                        getUserInfo();
+                        document.getElementById('status').innerHTML = '<p style="color: green;">✓ 登录成功！</p>';
+                    } else {
+                        console.log('用户取消登录或登录失败');
+                        document.getElementById('status').innerHTML = '<p style="color: red;">✗ 登录失败或已取消</p>';
+                    }
+                }, { scope: 'public_profile,email' });
+            }
+
+            // 获取用户信息
+            function getUserInfo() {
+                FB.api('/me', { fields: 'id,name,email,picture' }, function(response) {
+                    console.log('用户信息：', response);
+                    
+                    if (response.error) {
+                        console.error('获取信息失败：', response.error);
+                        return;
+                    }
+
+                    // 显示用户信息
+                    document.getElementById('userName').textContent = response.name || '未知';
+                    document.getElementById('userEmail').textContent = response.email || '未提供';
+                    
+                    if (response.picture && response.picture.data && response.picture.data.url) {
+                        document.getElementById('userPicture').src = response.picture.data.url;
+                    }
+
+                    // 隐藏登录按钮，显示用户信息
+                    document.getElementById('loginContainer').style.display = 'none';
+                    document.getElementById('userInfo').style.display = 'block';
+                });
+            }
+
+            // 登出函数
+            function fbLogout() {
+                FB.logout(function(response) {
+                    console.log('已登出', response);
+                    showLoginButton();
+                    document.getElementById('status').innerHTML = '<p style="color: orange;">✓ 已登出</p>';
+                });
+            }
+
+            // 显示登录按钮
+            function showLoginButton() {
+                document.getElementById('loginContainer').style.display = 'block';
+                document.getElementById('userInfo').style.display = 'none';
+            }
+        </script>
+    </div>
+
+</body>
+</html>
